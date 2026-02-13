@@ -1,0 +1,154 @@
+{
+  "name": "valentines temp",
+  "path": "d:\\github\\valentines temp",
+  "type": "directory",
+  "children": [
+    {
+      "name": "assets",
+      "type": "folder",
+      "children": [
+        {
+          "name": "audio",
+          "type": "folder",
+          "children": [
+            {
+              "name": "December Avenue - Saksi Ang Langit (OFFICIAL LYRIC VIDEO).mp3",
+              "type": "file"
+            },
+            {
+              "name": "angellique.mp3",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "css",
+          "type": "folder",
+          "children": [
+            {
+              "name": "themes",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "love",
+                  "type": "folder",
+                  "children": [
+                    {
+                      "name": "valentines",
+                      "type": "folder",
+                      "children": [
+                        {
+                          "name": "memories.css",
+                          "type": "file"
+                        },
+                        {
+                          "name": "surprise.css",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "valentine.css",
+                      "type": "file"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "animations.css",
+              "type": "file"
+            },
+            {
+              "name": "main.css",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "js",
+          "type": "folder",
+          "children": [
+            {
+              "name": "love",
+              "type": "folder",
+              "children": [
+                {
+                  "name": "valentines",
+                  "type": "folder",
+                  "children": [
+                    {
+                      "name": "memories.js",
+                      "type": "file"
+                    },
+                    {
+                      "name": "surprise.js",
+                      "type": "file"
+                    }
+                  ]
+                },
+                {
+                  "name": "valentine.js",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "config.js",
+              "type": "file"
+            },
+            {
+              "name": "script.js",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "video",
+          "type": "folder",
+          "children": [
+            {
+              "name": "video 1.mp4",
+              "type": "file"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "memories",
+      "type": "folder",
+      "children": [
+        {
+          "name": "index.html",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "surprise",
+      "type": "folder",
+      "children": [
+        {
+          "name": "index.html",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "admin.html",
+      "type": "file"
+    },
+    {
+      "name": "index.html",
+      "type": "file"
+    }
+  ],
+  "metadata": {
+    "generated": "2026-02-13T17:14:59.068Z",
+    "generator": "FileTree Pro Extension",
+    "version": "0.2.0",
+    "showIcons": false,
+    "maxDepth": 10
+  }
+}

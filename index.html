@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+
+    <link rel="stylesheet" href="assets/css/main.css">
+    
+    <link id="theme-css" rel="stylesheet" href="assets/css/themes/love/valentine.css"> 
+</head>
+<body>
+
+    <div class="animation-stage">
+        <div class="sun"></div>
+        <div class="mountain-bg"></div>
+        <div class="mountain-foreground"></div>
+
+        <div class="char girl">
+            <div class="head"></div>
+            <div class="body"></div>
+            <div class="arm left"></div>
+            <div class="arm right"></div>
+            <div class="leg left"></div>
+            <div class="leg right"></div>
+            <div class="hair"></div>
+        </div>
+
+        <div class="char boy">
+            <div class="head"></div>
+            <div class="body"></div>
+            <div class="arm left"></div>
+            <div class="arm right"></div>
+            <div class="leg left"></div>
+            <div class="leg right"></div>
+            <div class="gift-box">❤️</div> 
+        </div>
+
+        <div class="comic-bubble bubble-1">LOVE!!!</div>
+        <div class="comic-bubble bubble-2">❤️</div>
+        <div class="wipe-heart"></div>
+    </div>
+
+    <div class="login-overlay">
+        <div class="glass-card">
+            <div id="icon-container" class="icon-animate"></div>
+            
+            <h2 class="login-title">Hello, <span id="client-name-display">...</span></h2>
+            
+            <div id="input-area">
+                <p id="dynamic-message">Please enter your passcode</p>
+                <div class="input-group">
+                    <input type="password" id="passcode" placeholder="• • • •" maxlength="10">
+                    <button id="enter-btn">Unlock <span class="arrow">→</span></button>
+                </div>
+                <p id="error-msg" class="hidden">Incorrect Passcode</p>
+            </div>
+
+            <div id="loading-box" class="hidden">
+                <p class="loading-text">Unlocking Surprise...</p>
+                <div class="progress-bar-bg">
+                    <div id="progress-bar-fill"></div>
+                </div>
+                <p id="loading-percent">0%</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module" src="assets/js/script.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,222 @@
+/* SURPRISE PAGE STYLES - BIGGER & BETTER (UPDATED WITH ICON) */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    background: #000;
+    color: #590d22;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh; 
+}
+
+/* --- VIDEO BACKGROUND --- */
+.video-background-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -3; overflow: hidden;
+}
+#bg-video-element {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: blur(8px) brightness(0.6); 
+    transform: scale(1.1); transition: opacity 1s ease-in-out, filter 1s ease;
+}
+.video-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(43, 4, 4, 0.3);
+}
+
+/* --- FIREFLIES --- */
+#fireflies-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -2; pointer-events: none;
+}
+.firefly {
+    position: absolute; width: 4px; height: 4px;
+    background-color: #ffeba7; border-radius: 50%;
+    box-shadow: 0 0 10px 2px rgba(255, 235, 167, 0.4);
+    opacity: 0; animation: fly 10s infinite linear;
+}
+@keyframes fly {
+    0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+    50% { transform: translateY(50vh) translateX(50px); opacity: 0.8; }
+    100% { transform: translateY(-10vh) translateX(-50px); opacity: 0; }
+}
+
+/* --- SECTIONS --- */
+#hero, #message, #gallery, #cinema, #music, #thoughts, #memories-section {
+    min-height: 100vh; padding: 100px 20px; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; background: transparent; 
+}
+#memories-section { justify-content: flex-start; padding-top: 150px; }
+
+.reveal { opacity: 0; transform: translateY(50px); transition: all 1s ease-out; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* --- 1. GALLERY (INDEX PAGE - 5x2 GRID) --- */
+.gallery-10-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px; 
+    width: 100%;
+    max-width: 1600px;
+    padding: 20px;
+    margin: 0 auto;
+}
+.gallery-10-grid .photo-card {
+    width: 100%; height: auto; margin: 0;
+    transform: rotate(0); 
+    padding: 12px 12px 50px 12px;
+    background: white; box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    position: relative; transition: all 0.4s ease;
+}
+.gallery-10-grid .photo-card:nth-child(odd) { transform: rotate(-2deg); }
+.gallery-10-grid .photo-card:nth-child(even) { transform: rotate(2deg); }
+
+.gallery-10-grid .photo-card img {
+    height: 250px; 
+    width: 100%; object-fit: cover; border: 1px solid #eee;
+}
+.gallery-10-grid .photo-card:hover { transform: scale(1.15) rotate(0deg) !important; z-index: 10; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+
+/* --- BUTTONS & TITLES --- */
+.gallery-footer { margin-top: 60px; text-align: center; width: 100%; }
+.view-all-btn {
+    display: inline-block; padding: 18px 50px;
+    background: linear-gradient(45deg, #ff4d6d, #ff9a9e);
+    color: white; text-decoration: none; font-family: 'Poppins', sans-serif;
+    font-weight: 600; font-size: 1.1rem; letter-spacing: 1px; border-radius: 50px;
+    box-shadow: 0 10px 20px rgba(255, 77, 109, 0.4); transition: all 0.3s ease;
+    border: 2px solid rgba(255,255,255,0.2);
+}
+.view-all-btn:hover { transform: translateY(-5px) scale(1.05); background: linear-gradient(45deg, #ff2e63, #ff758f); }
+
+.back-btn-container { position: fixed; top: 30px; left: 30px; z-index: 1000; }
+.back-btn { text-decoration: none; color: white; font-size: 1.2rem; background: rgba(255,255,255,0.2); padding: 10px 25px; border-radius: 30px; backdrop-filter: blur(5px); transition: 0.3s; }
+.back-btn:hover { background: #ff4d6d; }
+
+.page-title { font-family: 'Playfair Display', serif; font-size: 4rem; color: white; margin-bottom: 10px; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+.page-subtitle { font-family: 'Dancing Script', cursive; font-size: 2rem; color: #ffccd5; margin-bottom: 60px; }
+
+/* TAPE DESIGN */
+.tape-center { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 100px; height: 35px; background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+/* --- CINEMA SECTION --- */
+.cinema-container { width: 100%; max-width: 1400px; display: flex; flex-direction: column; align-items: center; }
+.main-video-frame { width: 100%; border: 5px solid rgba(255, 255, 255, 0.2); border-radius: 20px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); background: #000; }
+#main-video-player { width: 100%; display: block; aspect-ratio: 16/9; }
+.cinema-caption { margin-top: 20px; color: #ffb7c5; font-size: 1.5rem; font-family: 'Dancing Script', cursive; letter-spacing: 2px; }
+
+/* --- MUSIC PLAYER CARD (UPDATED WITH ICON) --- */
+.music-player-card { 
+    display: flex; flex-wrap: wrap; 
+    background: rgba(20, 20, 20, 0.6); 
+    backdrop-filter: blur(20px); 
+    border: 1px solid rgba(255, 255, 255, 0.15); 
+    border-radius: 25px; 
+    padding: 30px; 
+    max-width: 800px; width: 95%; 
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); 
+    overflow: hidden; 
+    gap: 30px; 
+    align-items: center; 
+}
+
+/* NEW: Styles for the spinning icon */
+.player-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 250px;
+}
+
+.vinyl-wrapper {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #1a0b12, #2b0404);
+    border: 2px solid rgba(255, 77, 109, 0.5);
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    animation: spinVinyl 10s linear infinite;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 20px rgba(255, 77, 109, 0.2);
+}
+
+.play-icon-visual {
+    font-size: 60px;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 10px rgba(255, 77, 109, 0.6);
+    margin-left: 8px; /* Optical centering */
+}
+
+/* Player Right Side */
+.player-right { flex: 1.5; display: flex; flex-direction: column; min-width: 300px; }
+.current-track-info { margin-bottom: 20px; text-align: left; }
+.current-track-info h3 { font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 5px; text-shadow: 0 2px 10px rgba(255, 77, 109, 0.4); }
+.current-track-info p { font-size: 1rem; color: #ffb7c5; font-weight: 500; }
+
+audio { width: 100%; height: 40px; margin-bottom: 20px; filter: invert(1) hue-rotate(180deg); opacity: 0.8; border-radius: 20px; }
+
+.playlist-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); margin-bottom: 10px; text-align: left; }
+.playlist-scroll-area { max-height: 200px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding-right: 5px; }
+
+.track-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px 15px; border-radius: 12px; color: white; cursor: pointer; text-align: left; transition: all 0.3s ease; display: flex; align-items: center; gap: 15px; font-family: 'Poppins', sans-serif; }
+.track-btn:hover { background: rgba(255, 255, 255, 0.15); padding-left: 20px; }
+.track-btn.active { background: linear-gradient(90deg, #ff4d6d, #ff9a9e); border-color: transparent; color: white; box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4); font-weight: 600; }
+.track-btn span { font-size: 1.2rem; filter: grayscale(1); transition: 0.3s; }
+.track-btn.active span { filter: grayscale(0); }
+
+@keyframes spinVinyl { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* --- OTHER ELEMENTS --- */
+#music .section-title { text-align: left; width: 95%; max-width: 800px; margin-bottom: 30px; color: #ffb7c5; }
+.section-title { font-family: 'Playfair Display', serif; font-size: 3rem; color: #fff; margin-bottom: 50px; text-align: center; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.scrapbook-container { position: relative; max-width: 900px; width: 100%; display: flex; justify-content: center; align-items: flex-start; flex-wrap: wrap; gap: 40px; }
+.paper-letter { flex: 1; min-width: 300px; background: #fdfbf7; padding: 60px 40px; box-shadow: 0 1px 4px rgba(0,0,0,0.05), 0 15px 30px rgba(0,0,0,0.2); transform: rotate(-2deg); position: relative; border-radius: 2px; background-image: repeating-linear-gradient(white 0px, white 24px, #e1e8ed 25px); }
+.paper-letter .greeting { font-family: 'Dancing Script', cursive; font-size: 2rem; color: #2b0404; margin-bottom: 20px; }
+.paper-letter .body-text p { font-family: 'Nanum Pen Script', cursive; font-size: 1.6rem; line-height: 25px; color: #4a4a4a; margin-bottom: 25px; }
+.paper-letter .closing { font-family: 'Dancing Script', cursive; font-size: 1.8rem; text-align: right; margin-top: 40px; color: #800f2f; }
+.tape-top { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 120px; height: 35px; background-color: rgba(255, 77, 109, 0.7); box-shadow: 0 1px 3px rgba(0,0,0,0.2); opacity: 0.9; clip-path: polygon(0% 0%, 100% 0%, 98% 10%, 100% 20%, 98% 30%, 100% 40%, 98% 50%, 100% 60%, 98% 70%, 100% 80%, 98% 90%, 100% 100%, 0% 100%, 2% 90%, 0% 80%, 2% 70%, 0% 60%, 2% 50%, 0% 40%, 2% 30%, 0% 20%, 2% 10%); }
+.polaroid-pin { background: white; padding: 15px 15px 40px 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); transform: rotate(3deg) translateY(20px); width: 250px; position: relative; z-index: 2; transition: 0.3s; }
+.polaroid-pin img { width: 100%; height: 250px; object-fit: cover; border: 1px solid #eee; }
+.polaroid-pin .caption { font-family: 'Nanum Pen Script', cursive; font-size: 1.8rem; text-align: center; margin-top: 15px; color: #555; }
+.tape-corner { position: absolute; top: -10px; left: 50%; transform: translateX(-50%) rotate(-2deg); width: 100px; height: 30px; background-color: rgba(255, 204, 0, 0.6); opacity: 0.8; }
+.hero-content-simple h1 { font-family: 'Playfair Display', serif; font-size: 5rem; color: #fff; margin-bottom: 20px; text-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+.hero-content-simple p { font-size: 1.5rem; color: #ffccd5; letter-spacing: 4px; font-weight: 600; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.cursor { display: inline-block; margin-left: 5px; color: #fff; animation: blink 0.8s infinite; }
+.scroll-indicator { position: absolute; bottom: 30px; display: flex; flex-direction: column; align-items: center; color: #fff; opacity: 0.8; animation: bounce 2s infinite; }
+.scroll-indicator span { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 5px; }
+#loading-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #111; z-index: 20000; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; transition: opacity 0.8s ease-out; }
+.heart-loader { font-size: 3rem; animation: heartbeat 1s infinite; margin-bottom: 20px; }
+.progress-bar-container { width: 300px; height: 10px; background: rgba(255,255,255,0.2); border-radius: 10px; overflow: hidden; margin-bottom: 10px; }
+#progress-bar { width: 0%; height: 100%; background: #ff4d6d; transition: width 0.1s linear; }
+.hidden { display: none !important; }
+header { position: fixed; top: 0; left: 0; width: 100%; padding: 20px 50px; display: flex; justify-content: center; align-items: center; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(10px); z-index: 1000; }
+nav a { color: #fff; font-weight: 500; font-size: 0.95rem; text-decoration: none; text-transform: uppercase; margin: 0 15px; transition: 0.3s; }
+nav a:hover { color: #ff4d6d; }
+.logout-btn { position: absolute; right: 50px; text-decoration: none; padding: 8px 20px; border: 1px solid #fff; border-radius: 30px; color: #fff; font-size: 0.85rem; }
+.quote-box { font-size: 2rem; font-family: 'Playfair Display', serif; font-style: italic; color: #2b0404; max-width: 700px; padding: 30px; background: rgba(255,255,255,0.85); border-radius: 20px; }
+.divider { width: 100px; height: 3px; background: #ff4d6d; margin: 30px auto; }
+#overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #111; z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; }
+.overlay-title { font-family: 'Playfair Display', serif; margin-bottom: 20px; font-size: 3rem; }
+#start-btn { padding: 15px 30px; background: #ff4d6d; color: white; border: none; border-radius: 30px; font-size: 1rem; cursor: pointer; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    nav { display: none; }
+    .hero-content-simple h1 { font-size: 3rem; }
+    .scrapbook-container { flex-direction: column-reverse; align-items: center; }
+    .paper-letter { width: 100%; transform: rotate(0); padding: 40px 20px; }
+    .polaroid-pin { transform: rotate(2deg); width: 200px; margin-bottom: -30px; }
+    .music-player-card { flex-direction: column; text-align: center; padding: 20px; }
+    .player-left { margin-bottom: 20px; }
+    .vinyl-wrapper { width: 150px; height: 150px; }
+    .current-track-info { text-align: center; }
+    #music .section-title { text-align: center; }
+    
+    /* Responsive Grids */
+    .gallery-10-grid { grid-template-columns: repeat(2, 1fr); }
+    .freedom-wall { justify-content: center; }
+}

@@ -1,0 +1,39 @@
+/* assets/css/main.css (UPDATED MASTER VERSION) */
+
+/* 1. GLOBAL RESET (Para pantay sa lahat ng browser) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. BODY DEFAULTS */
+body {
+    font-family: 'Poppins', sans-serif; /* Default font */
+    background-color: #f0f0f0; /* Fallback color */
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* Iwas scrollbars */
+}
+
+/* 3. UTILITIES */
+.hidden {
+    display: none !important;
+}
+
+/* Animation Utility: Shake Effect (Para sa wrong password) */
+.shake {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* NOTE: Wala na tayong nilagay na layout rules dito (flex/center). 
+   Ipapasa na natin ang trabaho ng layout sa THEME CSS files 
+   (valentine.css, birthday.css) para flexible. */

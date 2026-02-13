@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Upload Memories</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 500px; margin: 0 auto; background: #f4f4f4; }
+        .upload-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        input, button { width: 100%; margin-bottom: 15px; padding: 10px; box-sizing: border-box; }
+        button { background: #ff4d6d; color: white; border: none; cursor: pointer; font-weight: bold; }
+        button:hover { background: #e0435f; }
+        #status { text-align: center; font-weight: bold; margin-top: 10px; }
+        #preview { width: 100%; max-height: 200px; object-fit: contain; display: none; margin-bottom: 15px; border: 1px dashed #ccc; }
+    </style>
+</head>
+<body>
+
+    <div class="upload-card">
+        <h2>📸 Add New Memory (No Cost)</h2>
+        
+        <label>1. Select Image:</label>
+        <input type="file" id="file-input" accept="image/*">
+        <img id="preview" alt="Preview">
+
+        <label>2. Enter Caption:</label>
+        <input type="text" id="caption-input" placeholder="Example: Sweet moments ❤️">
+
+        <button id="upload-btn">Save to Database</button>
+        
+        <p id="status"></p>
+    </div>
+
+    <script type="module">
+        import { addMemoryToDB } from './assets/js/config.js';
+
+        const fileInput = document.getElementById('file-input');
+        const captionInput = document.getElementById('caption-input');
+        const uploadBtn = document.getElementById('upload-btn');
+        const status = document.getElementById('status');
+        const preview = document.getElementById('preview');
+
+        let compressedImage = null;
+
+        // Preview & Compress Logic
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if(file) {
+                status.innerText = "⏳ Processing image...";
+                resizeImage(file).then(base64 => {
+                    compressedImage = base64;
+                    preview.src = base64;
+                    preview.style.display = 'block';
+                    status.innerText = "✅ Image ready to upload!";
+                });
+            }
+        });
+
+        uploadBtn.addEventListener('click', async () => {
+            const caption = captionInput.value;
+
+            if (!compressedImage || !caption) {
+                alert("Please select a file and enter a caption!");
+                return;
+            }
+
+            status.innerText = "💾 Saving to Database...";
+            uploadBtn.disabled = true;
+
+            try {
+                // Save directly to Firestore
+                const success = await addMemoryToDB(caption, compressedImage);
+
+                if(success) {
+                    status.innerText = "✅ Success! Added to website.";
+                    status.style.color = "green";
+                    fileInput.value = "";
+                    captionInput.value = "";
+                    preview.style.display = 'none';
+                    compressedImage = null;
+                } else {
+                    throw new Error("Database save failed");
+                }
+
+            } catch (error) {
+                console.error(error);
+                status.innerText = "❌ Error saving. Image might be too big.";
+                status.style.color = "red";
+            }
+            
+            uploadBtn.disabled = false;
+        });
+
+        // Image Compressor (Target: 800px width, Quality 0.7)
+        function resizeImage(file) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const max = 800; // Limit width/height
+                        let w = img.width;
+                        let h = img.height;
+                        
+                        if (w > h) { if (w > max) { h *= max / w; w = max; } } 
+                        else { if (h > max) { w *= max / h; h = max; } }
+                        
+                        canvas.width = w;
+                        canvas.height = h;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, w, h);
+                        
+                        // Convert to lightweight text
+                        resolve(canvas.toDataURL('image/jpeg', 0.7)); 
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+    </script>
+</body>
+</html>

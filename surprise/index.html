@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise!</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@500;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" href="../assets/css/themes/love/valentines/surprise.css"> 
+</head>
+<body>
+
+    <div class="video-background-container">
+        <video id="bg-video-element" autoplay loop muted playsinline>
+            <source src="../assets/video/video 1.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <div id="fireflies-container"></div>
+
+    <div id="loading-screen">
+        <div class="heart-loader">❤️</div>
+        <div class="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
+        <p id="loading-text">Loading Memories... 0%</p>
+    </div>
+
+    <div id="overlay" class="hidden">
+        <h1 class="overlay-title">Welcome, <span id="overlay-name">Love</span></h1>
+        <button id="start-btn">Click to Open ❤️</button>
+    </div>
+
+    <div id="main-content">
+        <header>
+            <nav>
+                <a href="#hero">Home</a>
+                <a href="#message">Message</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#cinema">Video</a>
+                <a href="#music">Music</a>
+                <a href="#thoughts">Thoughts</a>
+            </nav>
+            <a href="../index.html" class="logout-btn">Logout</a>
+        </header>
+
+        <section id="hero">
+            <div class="hero-content-simple">
+                <h1><span class="typing-title"></span><span class="cursor">|</span></h1>
+                <p><span class="typing-subtitle"></span><span class="cursor">|</span></p>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll Down</span>
+                <div class="arrow">↓</div>
+            </div>
+        </section>
+
+        <section id="message" class="reveal">
+            <h2 class="section-title">My Message For You</h2>
+            <div class="scrapbook-container">
+                <div class="paper-letter">
+                    <div class="tape-top"></div>
+                    <p class="greeting">Dearest <span class="client-name">Love</span>,</p>
+                    
+                    <div class="body-text">
+                        <p id="editable-message-body" contenteditable="true" style="white-space: pre-wrap; outline: none; padding: 5px; border-radius: 5px; transition: 0.3s;">
+                            Loading message...
+                        </p>
+                        <small style="color: #ff4d6d; font-size: 10px; display: block; margin-top: 5px;">(Click text to edit)</small>
+                    </div>
+
+                    <p class="closing">Always yours,<br><strong>Me</strong></p>
+                </div>
+                
+                <div class="polaroid-pin">
+                    <div class="tape-corner"></div>
+                    <div class="editable-wrapper" style="cursor: pointer; position: relative;">
+                        <img id="scrapbook-img-target" src="" alt="Us">
+                        <input type="file" id="hidden-file-input" accept="image/*" style="display: none;">
+                        <div id="edit-hint" style="position: absolute; bottom: 5px; right: 5px; background: rgba(0,0,0,0.6); color: white; padding: 4px 8px; font-size: 11px; border-radius: 4px; display: none; pointer-events: none;">Click to Edit ✏️</div>
+                    </div>
+                    <div class="caption">Us ❤️</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="reveal">
+            <h2 class="section-title">Our Moments</h2>
+            
+            <div class="gallery-10-grid" id="surprise-grid-container"></div>
+
+            <div class="gallery-footer">
+                <a href="../memories/index.html" class="view-all-btn">See All Memories 📸</a>
+            </div>
+        </section>
+
+        <section id="cinema" class="reveal">
+            <h2 class="section-title">Our Special Video</h2>
+            <div class="cinema-container">
+                <div class="main-video-frame" style="position: relative;">
+                    <iframe id="youtube-player" style="display:none; width: 100%; height: 100%; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    
+                    <video id="main-video-player" controls style="width: 100%; height: 100%;">
+                        <source src="" type="video/mp4">
+                        Your browser does not support video.
+                    </video>
+                    <button id="edit-video-btn" style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.6); color: white; border: 1px solid white; padding: 5px 10px; cursor: pointer; border-radius: 5px; font-size: 12px; z-index: 10;">Change Video 🎥</button>
+                </div>
+                <p class="cinema-caption">Watch this special moment ❤️</p>
+            </div>
+        </section>
+
+        <section id="music" class="reveal">
+            <h2 class="section-title" style="color: #ffb7c5;">Our Playlist</h2>
+            
+            <div class="music-player-card">
+                <div class="player-left">
+                    <div class="vinyl-wrapper">
+                        <span class="play-icon-visual">▶</span>
+                    </div>
+                </div>
+
+                <div class="player-right">
+                    <div class="current-track-info">
+                        <h3 id="track-title">Select a Song</h3>
+                        <p id="track-artist">To change the vibe</p>
+                    </div>
+
+                    <audio id="bg-music" controls>
+                        <source src="" type="audio/mpeg">
+                        Your browser does not support audio.
+                    </audio>
+
+                    <div class="playlist-header" style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; margin-bottom: 5px;">
+                        <div class="playlist-label">Up Next:</div>
+                        <button id="add-song-btn" style="background: #ff4d6d; border: none; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; cursor: pointer;">+ Add Song</button>
+                    </div>
+
+                    <div class="playlist-scroll-area" id="playlist-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="thoughts" class="reveal">
+            <h2 class="section-title">Final Thoughts</h2>
+            <div class="quote-box">
+                "I choose you. And I'll choose you over and over and over. Without pause, without a doubt, in a heartbeat. I'll keep choosing you."
+            </div>
+            <div class="divider"></div>
+            <p style="margin-top: 20px; color: #fff;">Forever and always.</p>
+        </section>
+    </div>
+
+    <input type="file" id="gallery-file-input" accept="image/*" style="display: none;">
+
+    <script type="module" src="../assets/js/love/valentines/surprise.js"></script>
+</body>
+</html>

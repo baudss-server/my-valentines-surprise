@@ -1,0 +1,109 @@
+/* PREMIUM VALENTINE THEME: "Mountain Sunset" + Loading Bar */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;500;600&display=swap');
+
+body {
+    margin: 0; padding: 0; font-family: 'Poppins', sans-serif;
+    overflow: hidden; background: #2b0404; 
+}
+
+/* --- ANIMATION STAGE --- */
+.animation-stage {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: linear-gradient(to bottom, #4a1c40 0%, #d65db1 40%, #ff9f68 70%, #ffcc33 100%);
+    z-index: 1;
+}
+
+/* SUN */
+.sun {
+    position: absolute; bottom: 30%; left: 50%; transform: translateX(-50%);
+    width: 150px; height: 150px; background: #ffeb3b; border-radius: 50%;
+    box-shadow: 0 0 80px rgba(255, 235, 59, 0.8);
+    animation: sunset-anim 20s infinite linear;
+}
+
+/* MOUNTAINS */
+.mountain-bg {
+    position: absolute; bottom: 0; left: 0; width: 100%; height: 40%;
+    background: #5d2e46;
+    clip-path: polygon(0% 100%, 0% 30%, 20% 60%, 40% 20%, 60% 50%, 80% 10%, 100% 40%, 100% 100%);
+    z-index: 2;
+}
+.mountain-foreground {
+    position: absolute; bottom: 0; left: 0; width: 100%; height: 25%;
+    background: #2b0404; border-radius: 50% 50% 0 0 / 20% 20% 0 0; 
+    transform: scaleX(1.5); z-index: 5;
+}
+
+/* CHARACTERS */
+.char {
+    position: absolute; bottom: 12%; width: 70px; height: 180px; z-index: 10;
+}
+.head { width: 55px; height: 55px; background: #ffdbac; border-radius: 50%; position: absolute; top: 0; left: 8px; z-index: 2; }
+.body { width: 70px; height: 80px; position: absolute; top: 50px; border-radius: 20px 20px 0 0; z-index: 1; }
+.arm, .leg { position: absolute; width: 12px; background: inherit; border-radius: 10px; transform-origin: top center; }
+.arm { height: 50px; top: 55px; z-index: 3; } .arm.left { left: 0; } .arm.right { right: 0; }
+.leg { height: 60px; top: 125px; width: 14px; z-index: 0; } .leg.left { left: 15px; } .leg.right { right: 35px; }
+
+/* GIRL */
+.girl { left: 10%; transform: scaleX(-1); animation: girl-move-main 16s infinite linear; }
+.girl .body, .girl .arm { background: #ffb7c5; } .girl .leg { background: #ffdbac; } 
+.girl .hair { width: 60px; height: 70px; background: #3e2723; border-radius: 50% 50% 10px 10px; position: absolute; top: -5px; left: 5px; z-index: -1; }
+.girl .leg.left { animation: leg-walk-girl 16s infinite; } .girl .leg.right { animation: leg-walk-girl 16s infinite reverse; }
+
+/* BOY */
+.boy { right: -150px; animation: boy-move-main 16s infinite linear; }
+.boy .body, .boy .arm, .boy .leg { background: #333; } 
+.boy .leg.left { animation: leg-walk-boy 16s infinite; } .boy .leg.right { animation: leg-walk-boy 16s infinite reverse; }
+
+/* PROPS */
+.gift-box { position: absolute; top: 50px; right: -20px; font-size: 40px; opacity: 0; z-index: 20; animation: show-gift 16s infinite; }
+.comic-bubble { position: absolute; background: white; color: #d62828; padding: 15px 25px; border-radius: 30px; font-weight: 800; font-size: 20px; font-family: 'Poppins', sans-serif; opacity: 0; z-index: 50; white-space: nowrap; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+.comic-bubble::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-width: 10px; border-style: solid; border-color: white transparent transparent transparent; }
+.bubble-1 { bottom: 320px; right: 20%; animation: bubble-shout 16s infinite; }
+.bubble-2 { bottom: 320px; left: 50%; transform: translateX(-50%); animation: bubble-heart 16s infinite; }
+
+/* WIPE */
+.wipe-heart { position: absolute; top: -150%; left: 50%; width: 200px; height: 200px; background: #d62828; transform: translateX(-50%) rotate(-45deg); z-index: 100; opacity: 1; animation: transition-wipe 16s infinite ease-in-out; }
+.wipe-heart::before, .wipe-heart::after { content: ""; position: absolute; width: 200px; height: 200px; background: #d62828; border-radius: 50%; }
+.wipe-heart::before { top: -100px; left: 0; } .wipe-heart::after { top: 0; left: 100px; }
+
+/* --- GLASS CARD --- */
+.login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; z-index: 200; }
+.glass-card { width: 90%; max-width: 400px; padding: 40px; text-align: center; background: rgba(40, 10, 20, 0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); color: white; transition: all 0.5s ease; }
+#icon-container::before { content: "❤"; font-size: 60px; color: #ff4d6d; display: block; margin-bottom: 20px; text-shadow: 0 0 20px rgba(255, 77, 109, 0.6); animation: heartbeat 2s infinite; }
+.login-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: white; margin-bottom: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+.login-title span { color: #ffeb3b; }
+#dynamic-message { color: rgba(255,255,255,0.9); margin-bottom: 40px; font-size: 0.9rem; letter-spacing: 1px; }
+
+/* FORM ELEMENTS */
+.input-group { display: flex; flex-direction: column; gap: 20px; }
+input { width: 100%; padding: 15px 0; border: none; border-bottom: 2px solid rgba(255,255,255,0.5); font-size: 1.5rem; font-family: 'Playfair Display', serif; color: white; background: transparent; transition: 0.3s; letter-spacing: 5px; text-align: center; }
+input:focus { outline: none; border-bottom-color: #ffeb3b; }
+input::placeholder { color: rgba(255,255,255,0.4); }
+button { padding: 15px; background: rgba(255,255,255,0.9); color: #2b0404; border: none; border-radius: 50px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 10px; }
+button:hover { background: #ffeb3b; transform: translateY(-2px); box-shadow: 0 0 20px rgba(255, 235, 59, 0.4); }
+#error-msg { color: #ff4d6d; margin-top: 20px; font-size: 0.9rem; font-weight: 600; text-shadow: 0 0 10px black;}
+
+/* --- NEW: LOADING BAR STYLES --- */
+.hidden { display: none !important; }
+#loading-box { margin-top: 20px; text-align: center; }
+.loading-text { font-size: 1.1rem; color: #ffeb3b; margin-bottom: 15px; font-weight: 500; letter-spacing: 1px; animation: pulse 1s infinite; }
+.progress-bar-bg { width: 100%; height: 15px; background: rgba(255,255,255,0.2); border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.3); }
+#progress-bar-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #ff4d6d, #ffeb3b); border-radius: 10px; transition: width 3s ease-in-out; /* 3 seconds loading */ }
+#loading-percent { margin-top: 10px; font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+
+@keyframes pulse { 0% { opacity: 0.7; } 50% { opacity: 1; } 100% { opacity: 0.7; } }
+
+/* ANIMATION KEYFRAMES (Standard) */
+@keyframes sunset-anim { 0% { transform: translateX(-50%) translateY(0); background: #ffeb3b; } 50% { transform: translateX(-50%) translateY(20px); background: #ff9800; } 100% { transform: translateX(-50%) translateY(40px); background: #ff5722; } }
+@keyframes boy-move-main { 0% { right: -150px; transform: scaleX(1); } 15% { right: 20%; } 35% { right: 20%; transform: scaleX(1); } 45% { right: calc(50% - 35px); transform: scaleX(1); } 90% { opacity: 1; right: calc(50% - 35px); } 95% { opacity: 0; right: calc(50% - 35px); } 100% { right: -150px; opacity: 0; } }
+@keyframes girl-move-main { 0% { left: 10%; transform: scaleX(-1); } 30% { left: 10%; transform: scaleX(-1); } 35% { left: 10%; transform: scaleX(1); } 45% { left: calc(50% - 85px); transform: scaleX(1); } 90% { opacity: 1; left: calc(50% - 85px); } 95% { opacity: 0; left: calc(50% - 85px); } 100% { left: 10%; transform: scaleX(-1); opacity: 0; } }
+@keyframes leg-walk-boy { 0% { transform: rotate(-30deg); } 5% { transform: rotate(30deg); } 10% { transform: rotate(-30deg); } 15% { transform: rotate(0deg); } 35% { transform: rotate(0deg); } 37% { transform: rotate(-30deg); } 40% { transform: rotate(30deg); } 43% { transform: rotate(-30deg); } 45% { transform: rotate(0deg); } 100% { transform: rotate(0deg); } }
+@keyframes leg-walk-girl { 0% { transform: rotate(0deg); } 35% { transform: rotate(0deg); } 37% { transform: rotate(-30deg); } 40% { transform: rotate(30deg); } 43% { transform: rotate(-30deg); } 45% { transform: rotate(0deg); } 100% { transform: rotate(0deg); } }
+@keyframes show-gift { 0%, 65% { opacity: 1; right: -20px; transform: rotate(-10deg); } 70% { opacity: 1; right: 40px; transform: rotate(0deg); } 90% { opacity: 1; right: 40px; transform: rotate(0deg); } 95% { opacity: 0; right: 40px; } 100% { opacity: 0; right: -20px; } }
+@keyframes bubble-shout { 0%, 15% { opacity: 0; transform: scale(0); } 18% { opacity: 1; transform: scale(1.1); } 22% { transform: scale(1); } 32% { opacity: 1; } 35% { opacity: 0; transform: scale(0); } }
+@keyframes bubble-heart { 0%, 55% { opacity: 0; transform: translateX(-50%) scale(0); } 60% { opacity: 1; transform: translateX(-50%) scale(1.1); } 80% { opacity: 1; transform: translateX(-50%) scale(1); } 85% { opacity: 0; } }
+@keyframes transition-wipe { 0%, 75% { top: -150%; opacity: 1; transform: translateX(-50%) rotate(-45deg) scale(0.5); } 82% { top: 30%; opacity: 1; transform: translateX(-50%) rotate(-45deg) scale(1); } 85% { top: 30%; transform: translateX(-50%) rotate(-45deg) scale(1.1); } 92% { top: 30%; opacity: 1; transform: translateX(-50%) rotate(-45deg) scale(50); } 96% { top: 30%; opacity: 1; transform: translateX(-50%) rotate(-45deg) scale(50); } 100% { top: 30%; opacity: 0; transform: translateX(-50%) rotate(-45deg) scale(50); } }
+@keyframes heartbeat { 0% { transform: scale(1); } 15% { transform: scale(1.1); } 30% { transform: scale(1); } 45% { transform: scale(1.1); } 100% { transform: scale(1); } }
+@media (max-width: 768px) { .glass-card { width: 90%; padding: 30px; } #dynamic-title { font-size: 2rem; } .animation-stage { transform: scale(0.8); transform-origin: bottom center; } }
